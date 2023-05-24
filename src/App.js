@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Search from "./components/Search";
 import "./App.css";
 import clearsky from "./assets/clearsky-pixabay.jpg";
@@ -20,42 +20,37 @@ function App() {
     fetch(apiUrl)
       .then((res) => res.json())
       .then((data) => setData(data));
-  }, [query, unit]);
+  }, [apiUrl, query, unit]);
+
+  const getBackground = useCallback((data) => {
+    const weather = data.weather[0];
+    const weatherDesc = weather.main + weather.description;
+    console.log(weatherDesc);
+    if (weatherDesc.includes("rain")) {
+      return rainyday;
+    }
+    if (weatherDesc.includes("cloud")) {
+      return cloudyday;
+    }
+    if (weatherDesc.includes("sunny")) {
+      return sunny;
+    }
+    if (weatherDesc.includes("snow")) {
+      return snowy;
+    }
+    if (weatherDesc.includes("clear")) {
+      return clearsky;
+    }
+  }, []);
 
   useEffect(() => {
     console.log(data);
-  }, [data]);
-
-  const background = () => {
-    if (
-      data.weather.main === "Rain" ||
-      data.weather.description.includes("rain")
-    ) {
-      setbackgroundImg(`${rainyday}`);
-    } else if (
-      data.weather.main === "Clouds" ||
-      data.weather.description.includes("cloudy")
-    ) {
-      setbackgroundImg(`${cloudyday}`);
-    } else if (
-      data.weather.main === "Sunny" ||
-      data.weather.description.includes("sunny")
-    ) {
-      setbackgroundImg(`${sunny}`);
-    } else if (
-      data.weather.main === "Snow" ||
-      data.weather.description.includes("Snow")
-    ) {
-      setbackgroundImg(`${snowy}`);
-    } else if (
-      data.weather.main === "clear" ||
-      data.weather.description.includes("clear")
-    ) {
-      setbackgroundImg(`${clearsky}`);
+    if (data) {
+      const background = getBackground(data);
+      console.log(background);
+      setbackgroundImg(background);
     }
-
-    return background();
-  };
+  }, [data, getBackground]);
 
   const containerStyle = {
     width: "100vw",
