@@ -3,15 +3,17 @@ import Search from "./components/Search";
 import "./App.css";
 import clearsky from "./assets/clearsky-pixabay.jpg";
 import cloudyday from "./assets/cloudy-pixabay.jpg";
-import rainyday from "./assets/rainy.jpeg";
-import snowy from "./assets/rainy.jpeg";
-import sunny from "./assets/rainy.jpeg";
+import rainyday from "./assets/rainy-rahul-pandit-2816625.jpg";
+import snowy from "./assets/snow-vlad-chețan.jpg";
+import sunny from "./assets/sunny-khanh-le-666839.jpg";
+import defaultimg from "./assets/default-john-tekeridis-754419.jpg"
+import misty from "./assets/misty-pixabay-163323.jpg";
 
 function App() {
   const [query, setQuery] = useState("");
   const [data, setData] = useState(null);
   const [unit, setUnit] = useState("metric");
-  const [backgroundImg, setbackgroundImg] = useState(`${clearsky}`);
+  const [backgroundImg, setbackgroundImg] = useState(`${defaultimg}`);
 
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=${unit}&appid=a6325784400e2a1842ec60f14b587c3b`;
 
@@ -40,6 +42,9 @@ function App() {
     }
     if (weatherDesc.includes("clear")) {
       return clearsky;
+    }
+     if (weatherDesc.includes("mist")) {
+      return misty;
     }
   }, []);
 
