@@ -1,13 +1,17 @@
-
-
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "lato", sans-serif;
-  background-color: #d7ceb2;
 }
 
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
 .search-container {
   margin: auto;
@@ -42,32 +46,44 @@ input {
   background-color: rgb(255, 255, 255, 0.23);
   width: 500px;
   height: 300px;
-  position: relative;
   margin: 70px auto;
   color: #fff;
   text-align: center;
-  line-height: 300px;
   border-radius: 10px;
- font-size: 1.9em;
-
 }
+
+.results h5,
+p {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  position: relative;
+  top: 35%;
+}
+
+.results h5 {
+  font-weight: 500;
+  font-size: 1.5em;
+}
+.results p {
+  font-weight: 700;
+  font-size: 4em;
+}
+
 .unit-selector {
   text-align: center;
-  padding: 20px;
+  padding: 10px 2px;
   background-color: rgb(255, 255, 255, 0.23);
-  width: 400px;
-  margin: 20px auto 50px;
-  padding: 10px;
+  width: 240px;
+  margin: 20px auto 50px auto;
   border-radius: 10px;
-
- 
-
 }
 .unit-selector span.active {
   background-color: #fff;
-  padding: 7px 20px;
- border-radius: 10px;
- color: #000000;
+  padding: 7px 20px 7px 36px;
+  margin: auto;
+  border-radius: 10px;
+  color: #000000;
 }
 
 .unit-selector span {
@@ -75,5 +91,79 @@ input {
   margin-right: 10px;
   margin-left: 10px;
   color: #fff;
-  
+}
+
+
+/*Screens that are 600px wide or less */
+@media screen and (max-width: 960px) {
+  .results {
+    width: 65%;
+    height: 350px;
+  }
+
+  input {
+  height: 50px;
+  font-size: 2em;
+  }
+  .search-container {
+    width: 80%;
+  }
+  .search-button {
+    font-size: 20px;
+  }
+  .results h5,
+  p {
+    position: relative;
+    top: 25%;
+  }
+  .results h5 {
+    font-weight: 500;
+    font-size: 3em;
+  }
+  .results p {
+    font-weight: 700;
+    font-size: 7em;
+    margin-left: 28px;
+  }
+  .unit-selector {
+        font-size: 2.8rem;
+        width: 59%;
+        padding-right: 1px;
+        padding-left: 0px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .results {
+    width: 80%;
+    height: 190px;
+  }
+  .search-container {
+    width: 90%;
+  }
+
+  .results h5,
+  p {
+    position: relative;
+    top: 25%;
+  }
+
+  .results h5 {
+    font-weight: 500;
+    font-size: 1.5em;
+  }
+  .results p {
+    font-weight: 700;
+    font-size: 3.9em;
+    margin-left: 12px;
+  }
+
+  .unit-selector{
+    font-size: 1.3rem;
+    width: 70%;
+   margin: 20px auto 50px auto;
+  }
+  .unit-selector span.active{
+    padding: 7px 20px;
+  }
 }
