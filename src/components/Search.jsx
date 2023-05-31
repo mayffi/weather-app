@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-
 function Search(props) {
   const [search, setSearch] = useState("");
 
   const handleSearch = (e) => {
     setSearch(e.target.value); //handles the value change when user types an input
   };
-
-
 
   const getWeather = (e) => {
     e.preventDefault();
@@ -18,12 +15,12 @@ function Search(props) {
   return (
     <form onSubmit={getWeather}>
       <div className="search-container">
-      <input
+        <input
           type="text"
           value={search}
           onChange={handleSearch}
           placeholder="Enter a city"
-        /> 
+        />
         <button type="submit" className="search-button">
           <FaSearch />
         </button>
@@ -32,6 +29,4 @@ function Search(props) {
   );
 }
 
-
 export default Search;
-
