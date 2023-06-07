@@ -1,0 +1,35 @@
+[ 
+ {
+    "id":"1",
+    "title":"Clear Sky",
+    "path":"/clearsky-pixabay.jpg"
+
+ },
+ {
+    "id":"2",
+    "title":"Cloudy or cloud",
+    "path":"/cloudy-pixabay.jpg"
+ },
+ {
+    "id":"3",
+    "title":"Default image",
+    "path":"/default-john-tekeridis-754419.jpg"
+ },
+ { "id":"4",
+ "title":"Misty or fog",
+ "path":"/misty-pixabay-163323.jpg"
+},
+ { "id":"5",
+ "title":"Rainy",
+ "path":"/rainy-rahul-pandit-2816625.jpg"
+},
+{
+    "id":"6",
+    "title":"Snow",
+    "path":"/snow-vlad-chețan-3509410.jpg"
+},{
+    "id":"7",
+    "title":"Sunny",
+    "path":"/sunny-khanh-le-666839.jpg"
+}
+]
