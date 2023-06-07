@@ -6,7 +6,7 @@ import "../dropDown.css";
 
 function Search(props) {
   const [search, setSearch] = useState("");
-  const [options, setOptions] = useState("");
+  const [options, setOptions] = useState([]);
   const [selectedOption, setselectedOption] = useState("");
 
   const geoAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=10&appid=a6325784400e2a1842ec60f14b587c3b`;
@@ -21,7 +21,7 @@ function Search(props) {
       .catch((error) => {
         console.log("error");
       });
-  }, [search,geoAPI]);
+  }, [search, geoAPI]);
 
   useEffect(() => {
     if (search.length) {
@@ -31,14 +31,16 @@ function Search(props) {
     }
   }, [fetchOptions, search]);
 
-  const handleSearch = (e) => {
-    setSearch(e.target.value); //handles the value change when user types an input
-    setselectedOption("");
-
+  const handleOptionsClick = (city) => {
+    setSearch(city); //handles the value change when user types an input
+    getWeather();
+    setOptions([]);
   };
 
-  const getWeather = (e) => {
-    e.preventDefault();
+  const getWeather = (e = null) => {
+    if (e) {
+      e.preventDefault();
+    }
     props.onSearch(search); //takes care of the search when a user submits, passes to the parent component through props
   };
 
@@ -46,23 +48,20 @@ function Search(props) {
     setSearch("");
   };
 
-  // const handleOption = (e) => {
-  //   setselectedOption(e.target.value);
-  //   setSearch("");
-  //   setOptions([]);
-   
-  // };
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
 
-  const handleSelect = city =>{
-    setSearch(city.name)
-    setOptions([])
-    console.log(city.name)
-    console.log(city.lat, city.lon)
+  const handleSelect = (city) => {
+    setSearch(city.name);
+    setOptions([]);
+    console.log(city.name);
+    console.log(city.lat, city.lon);
     props.onSearch(search);
-  }
+  };
 
   return (
-    <form onSubmit={getWeather} >
+    <form onSubmit={getWeather}>
       <div className="search-container">
         <div className="dropdown">
           <input
@@ -72,11 +71,16 @@ function Search(props) {
             placeholder="Enter a city"
             onClick={clearInput}
           />
-              {options.length > 0 && (
-            <ul className="city-list" value={{ selectedOption }} onChange={handleSelect}>
-            {options.map(city => ( <li key={city.id} onClick={handleSearch}>
-              {city.name}
-            </li>))}
+          {options.length > 0 && (
+            <ul className="city-list">
+              {options.map((city) => (
+                <li
+                  key={city.name}
+                  onClick={() => handleOptionsClick(city.name)}
+                >
+                  {city.name}
+                </li>
+              ))}
               {/* <option value=""></option>
               {options.map((option, index) => (
                 <option key={index} value={option.value}>

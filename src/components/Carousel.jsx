@@ -45,10 +45,10 @@ const Carousel = (props) => {
             {weather.name},{weather.sys.country}
           </h5>
           <p className="temperature"> {Math.round(weather.main.temp)}&deg;</p>
-          <div className="icon-desc">
+          <section className="icon-desc">
             <img src={props.iconsUrl} alt="weather icon"></img>
             <p> {weather.weather[0].description}</p>
-          </div>
+          </section>
         </div>
 
         <div className="carousel-content-two">

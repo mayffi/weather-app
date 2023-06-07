@@ -13,7 +13,6 @@ function App(props) {
   const [error, setError] = useState("");
   const [lat, setLat] = useState();
   const [lon, setLon] = useState();
- 
 
   const iconsUrl = useMemo(
     () =>
@@ -28,14 +27,13 @@ function App(props) {
       `https://api.openweathermap.org/data/2.5/weather?q=${query}&lat=${lat}&lon=${lon}&units=${unit}&appid=a6325784400e2a1842ec60f14b587c3b`,
     [query, unit, lat, lon]
   );
-     
 
-//     }
-
- 
+  //     }
 
   useEffect(() => {
-    
+    /*if (!lat || lon) {
+      return;
+    }*/
     fetch(apiUrl)
       .then(async (response) => {
         if (!response.ok) {
@@ -45,7 +43,7 @@ function App(props) {
           const data = await response.json(); // Process the response if successful
           console.log(data);
           setData(data); //Handles the data
-        
+          setError(null);
         }
       })
       .catch((error) => {
@@ -64,30 +62,16 @@ function App(props) {
   }, [data]);
 
   useEffect(() => {
-    if(navigator.geolocation ){
+    if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log(lat, lon)
-           setLat(position.coords.latitude);
-           setLon(position.coords.longitude)
-         
-          })
-        }else{
-          setError("Unable to retrieve your location")
-        }
-    
-  }, [data, lat,lon]);
-
-  // if(navigator.geolocation){
-  //   navigator.geolocation.getCurrentPosition((position) => {
-  //     setLat(position.coords.latitude);
-  //        setLon(position.coords.longitude)
-  //        console.log(lat, lon)
-  //       })
-  //     }else{
-  //       setError("Unable to retrieve your location")
-  //     }
- 
-
+        console.log(lat, lon);
+        setLat(position.coords.latitude);
+        setLon(position.coords.longitude);
+      });
+    } else {
+      setError("Unable to retrieve your location");
+    }
+  }, [data, lat, lon]);
 
   const containerStyle = {
     backgroundImage: `url(${backgroundImg})`,

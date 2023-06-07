@@ -13,16 +13,13 @@ p {
 }
 
 .carousel-content p {
-    font-weight: 500;
-    margin-top:-30px;
-    
-  }
-  
+  font-weight: 500;
+  margin-top: -30px;
+}
 
 .icon-desc {
   display: flex;
   flex-direction: column;
- 
 }
 
 .icon-desc img {
@@ -47,8 +44,6 @@ p {
   font-size: 6.2em;
 }
 
-
-
 .slick-dots {
   position: absolute;
   bottom: -25px;
@@ -60,16 +55,14 @@ p {
   text-align: center;
 }
 
-
 .carousel-content-two {
-  width: 500px ;
+  width: 500px;
   height: 300px;
   display: grid !important;
   grid-template-columns: 20% 20% 20% 20% 20% !important;
   grid-template-rows: 5% 20% 20% 20% 20% !important;
   gap: 22px 0;
   font-size: 1.2em;
- 
 }
 
 .carousel-upper {
@@ -81,18 +74,18 @@ p {
 
 .max {
   margin-right: 35px;
-  margin-top: auto ;
+  margin-top: auto;
 }
 
 .min {
   margin-right: 0px;
   margin-left: 45px;
-  margin-top: auto ;
+  margin-top: auto;
 }
 
 .feel {
   margin-left: 80px;
-  margin-top: auto ;
+  margin-top: auto;
 }
 
 .carousel-mid {
@@ -136,15 +129,14 @@ p {
 }
 
 .slick-slider {
-    background-color: rgb(255, 255, 255, 0.23);
-    width: 500px;
-    height: 300px;
-    margin: 70px auto;
-    color: #fff;
-    text-align: center;
-    border-radius: 10px;
-   
-  }
+  background-color: rgb(255, 255, 255, 0.23);
+  width: 500px;
+  height: 300px;
+  margin: 70px auto;
+  color: #fff;
+  text-align: center;
+  border-radius: 10px;
+}
 
 .slick-prev {
   left: -30px;
@@ -166,14 +158,13 @@ p {
   border: none;
   outline: none;
   background: transparent;
-  
 }
 
 .slick-prev:before,
 .slick-next:before {
   font-family: "slick";
   font-size: 25px;
- 
+
   line-height: 1;
   opacity: 0.75;
   color: #fff;
@@ -181,13 +172,13 @@ p {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 .slick-dots li {
-    position: relative;
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    margin: 0 5px;
-    padding: 0;
-    cursor: pointer;
-  }
+  position: relative;
+  display: inline-block;
+  top: 80px;
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+  padding: 0;
+  cursor: pointer;
+}
