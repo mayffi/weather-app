@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo, useCallback } from "react";
 import Search from "./components/Search";
 import "./App.css";
-import defaultimg from "./assets/default-john-tekeridis-754419.jpg";
 import { getBackground } from "./backgroundFunc";
 import Carousel from "./components/Carousel";
 
@@ -9,7 +8,7 @@ function App(props) {
   const [query, setQuery] = useState("");
   const [data, setData] = useState(null);
   const [unit, setUnit] = useState("metric");
-  const [backgroundImg, setbackgroundImg] = useState(`${defaultimg}`);
+  const [backgroundImg, setbackgroundImg] = useState("/assets/default-john-tekeridis-754419.jpg");
   const [error, setError] = useState("");
   const [lat, setLat] = useState();
   const [lon, setLon] = useState();
@@ -75,6 +74,7 @@ function App(props) {
 
   const containerStyle = {
     backgroundImage: `url(${backgroundImg})`,
+    // height:"100%"
   };
 
   return (
@@ -82,7 +82,7 @@ function App(props) {
       <Search onSearch={setQuery} />
       {/* {currentLocation && !data ?( <p> Loading weather data...</p>) : null} */}
       {data && (
-        <div>
+        <div className="content">
           <Carousel data={data} iconsUrl={iconsUrl} slides={App} />
           <div className="unit-selector">
             <span

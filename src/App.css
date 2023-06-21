@@ -2,28 +2,33 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "lato", sans-serif;
-  
+  font-family: "roboto", sans-serif;
+  background-color: burlywood
 }
 
- .container {
+.content{
+  padding: 0 0 20px 0;
+ 
+}
+
+.container {
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
- 
 }
 
 .search-container {
   margin: auto;
-  width: 500px;
+  width: 600px;
   position: relative;
   top: 50px;
 }
 
+
 input {
-  background-color: rgb(255, 255, 255, 0.15);
+  background-color: rgb(113, 121, 126, 0.4);
   width: 100%;
   box-sizing: border-box;
   padding: 8px;
@@ -33,7 +38,7 @@ input {
   border-radius: 10px;
 }
 
-::placeholder{
+::placeholder {
   color: #eeeeee;
 }
 
@@ -48,44 +53,38 @@ input {
   color: #fff;
 }
 
-
-.temperature {
-  font-weight: 700;
-  font-size: 6em;
-  grid-row-start: 3;
-}
-
-.error-results{
-  font-size: 2.5em;
-  position: absolute;
-  top: 20%;
-  left: 20%;
-  margin: 0 30px;
-  
+.results{
+  height: 100vh;
 }
 .error-results {
   background-color: rgb(255, 255, 255, 0.23);
-  width: 500px;
+  width: 600px;
   height: 200px;
-  margin: 0px 0px 70px 130px;
-  color: #fff;
+  margin-left: 40px;
+  position: absolute;
+  top: 20%;
+  left: 23%;
   text-align: center;
+  padding-left: 15px;;
   border-radius: 10px;
   display: flex;
   align-items: center;
   font-size: 2.5em;
- 
+  color: #fff;
+  text-shadow: -2px 1px 2px #000;
+  text-shadow: -1px 1px 2px #000, 1px 2px 6px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
-
-
 
 .unit-selector {
   text-align: center;
   padding: 10px 2px;
   background-color: rgb(255, 255, 255, 0.23);
-  width: 240px;
+  width: 25%;
   margin: 20px auto 50px auto;
   border-radius: 10px;
+  font-weight: 400;
+  font-size: 1.5rem;
 }
 .unit-selector span.active {
   background-color: #fff;
@@ -97,45 +96,48 @@ input {
 
 .unit-selector span {
   cursor: pointer;
-  margin-right: 10px;
+  margin-right: 25px;
   margin-left: 10px;
-  color: #fff;
+  color: #000;
 }
 
-
-
-/*Screens that are 960px wide or less */ 
+/*Screens that are 960px wide or less */
 @media screen and (max-width: 960px) {
-
- .container{
+  form{
+   margin-bottom: 30px;;
+  }
   
- }
 
+  .container {
+    height: 100vh;
+    position: relative;
+    z-index: 0;
+   
+   
+}
   .slick-slider {
     width: 70% !important;
     height: 350px;
     margin: 70px auto;
   }
 
+/* .content {
+  padding: 0 ;
+} */
+
   input {
-  height: 50px;
-  font-size: 2em;
+    height: 50px;
+    font-size: 2em;
   }
   .search-container {
     width: 70%;
-    
   }
   .search-button {
     font-size: 18px;
     margin-top: 4px;
   }
- 
-  .carousel-content h5 {
-    font-weight: 500;
-    font-size: 3em;
-  }
 
-  .desc{
+  .desc {
     font-size: 1.9em;
   }
 
@@ -152,102 +154,59 @@ input {
     top: 15%;
     margin: 0;
     left: 123px;
-}
+  }
 
   .unit-selector {
-        font-size: 2.8rem;
-        width: 65%;
-        padding-right: 1px;
-        padding-left: 0px;
-        white-space: nowrap;
+    font-size: 2.8rem;
+    width: 65%;
+    padding-right: 1px;
+    padding-left: 0px;
+    white-space: nowrap;
   }
 }
 
-/*Screens that are 600px wide or less */ 
+/*Screens that are 600px wide or less */
 @media screen and (max-width: 600px) {
-
-  .search-container {
-    width: 90%;
+  .desc {
+    font-size: 1.2rem;
   }
 
+  /* .carousel-content-three{
   
-  .carousel-content-two {
-   
-    
   }
 
-  .search-container {
-    width: 70%;
-    
-  }
+  .carousel-content
+p { 
+  font-size: 1.1rem;
+  margin: 20px 3px 20px 3px;
 
- 
+} */
 
-  .carousel-content h5 {
-   
-  }
-
-  .desc{
-    font-size: 1.2em;
-  }
+.temps {
+  margin: 0 !important;
+ padding: 0 10px 0 10px;
+ font-size: 1.3rem !important;
+}
 
   .temperature {
     font-weight: 700;
-    font-size: 3.9em;
+    font-size: 3.9rem;
     margin-left: 12px;
   }
 
-  .left-side{
-    grid-column-start: 2;
-  }
-  .right-side{
-    grid-column-start: 2;
-  }
-
-  .max {
-  
-  }
-  
-  .min {
-    
-  }
-  
-  .feel {
-   
-  }
-
-  .humidity {
-   
-  }
-  
-  .wind {
-  
-  }
-  
-  .visib {
-   
-  }
-
-  .sunrise {
-    
-  }
-  
-  .sunset {
-   
-  }
   .error-results {
     width: 68% !important;
     top: 20%;
     margin: 0;
     left: 60px;
-}
+  }
 
-  .unit-selector{
+  .unit-selector {
     font-size: 1.3rem;
     width: 70%;
-   margin: 20px auto 50px auto;
   }
-  .unit-selector span.active{
+  .unit-selector span.active {
     padding: 7px 20px;
   }
-} 
+}
+

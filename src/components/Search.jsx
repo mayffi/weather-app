@@ -1,18 +1,30 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import "../dropDown.css";
-// import { GEO_API_URL, geoApiOptions } from "../cityapi";
-// import useExternalScript from "../hooks/useExternalScript"
+
 
 function Search(props) {
   const [search, setSearch] = useState("");
   const [options, setOptions] = useState([]);
-  const [selectedOption, setselectedOption] = useState("");
 
-  const geoAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=10&appid=a6325784400e2a1842ec60f14b587c3b`;
+
+  // const geoAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=10&appid=a6325784400e2a1842ec60f14b587c3b`;
+
+  
+  
+  const citiesApiUrl = `https://city-and-state-search-api.p.rapidapi.com/cities/search?q=${search}&limit=5`;
+  const citiesOptions =  {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': '67458faf35msh80cd056b037cd02p10ab4bjsnb37bc61599c1',
+      'X-RapidAPI-Host': 'city-and-state-search-api.p.rapidapi.com'
+    }
+  };
+  
+
 
   const fetchOptions = useCallback(async () => {
-    await fetch(geoAPI)
+    await fetch(citiesApiUrl, citiesOptions)
       .then((response) => response.json())
       .then((data) => {
         setOptions(data);
@@ -21,7 +33,7 @@ function Search(props) {
       .catch((error) => {
         console.log("error");
       });
-  }, [search, geoAPI]);
+  }, [search, citiesApiUrl]);
 
   useEffect(() => {
     if (search.length) {
@@ -29,12 +41,16 @@ function Search(props) {
     } else {
       setOptions([]);
     }
-  }, [fetchOptions, search]);
+  }, [fetchOptions, search.length]);
 
   const handleOptionsClick = (city) => {
-    setSearch(city); //handles the value change when user types an input
+    setSearch(city); 
     getWeather();
     setOptions([]);
+    if (!getWeather){
+      setOptions([]);
+   
+    }
   };
 
   const getWeather = (e = null) => {
@@ -49,19 +65,13 @@ function Search(props) {
   };
 
   const handleSearch = (e) => {
-    setSearch(e.target.value);
+    setSearch(e.target.value); //handles the value change when user types an input
   };
 
-  const handleSelect = (city) => {
-    setSearch(city.name);
-    setOptions([]);
-    console.log(city.name);
-    console.log(city.lat, city.lon);
-    props.onSearch(search);
-  };
+ 
 
   return (
-    <form onSubmit={getWeather}>
+    <form onSubmit={getWeather} >
       <div className="search-container">
         <div className="dropdown">
           <input
@@ -75,10 +85,10 @@ function Search(props) {
             <ul className="city-list">
               {options.map((city) => (
                 <li
-                  key={city.name}
+                  key={city.id}
                   onClick={() => handleOptionsClick(city.name)}
                 >
-                  {city.name}
+                  {city.name} ,{city.country_name}
                 </li>
               ))}
               {/* <option value=""></option>

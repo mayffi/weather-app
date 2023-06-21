@@ -1,0 +1,78 @@
+[ 
+ {
+    "id":"1",
+    "description":"Clear",
+    "type":"d",
+    "path":"/assets/clearsky-day-pixabay.jpg"
+
+ },
+ {
+   "id":"2",
+   "description":"Clear",
+   "type":"n",
+   "path":"/assets/clearsky-night-jinen-shah.jpg"
+ },
+
+ {
+   "id":"3",
+   "description":"Clouds",
+   "type":"d",
+   "path":"/assets/cloudy-day-goxy-bgd.jpg"
+},
+{
+   "id":"4",
+   "description":"Clouds",
+   "type":"n",
+   "path":"/assets/cloudy-night-pure-julia.jpg"
+},
+{
+   "id":"5",
+   "description":"Mist",
+   "type":"d",
+   "path":"/assets/misty-day-pixabay-163323.jpg"
+},
+{
+   "id":"6",
+   "description":" Mist",
+   "type":"n",
+   "path":"/assets/misty-night-christina-victoria-craft.jpg"
+},
+{
+   "id":"7",
+   "description":"Rain",
+   "type":"d",
+   "path":"/assets/rainy-day-jay-shah.jpg"
+},
+{
+   "id":"8",
+   "description":"Rain",
+   "type":"n",
+   "path":"/assets/rainy_night-hide-obara.jpg"
+},
+{
+   "id":"9",
+   "description":"Snow",
+   "type":"d",
+   "path":"/assets/snowy-day-cloris-ying.jpg"
+},
+{
+   "id":"10",
+   "description":"Snow",
+   "type":"n",
+   "path":"/assets/snowy-night-presentsquare.jpg"
+},
+
+{
+   "id":"12",
+   "description":"Haze",
+   "type":"d",
+   "path":"/assets/misty-day-pixabay-163323.jpg"
+},
+{
+   "id":"13",
+   "description":" Haze",
+   "type":"n",
+   "path":"/assets/misty-night-christina-victoria-craft.jpg"
+}
+
+]
