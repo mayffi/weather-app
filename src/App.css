@@ -3,11 +3,13 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: "roboto", sans-serif;
-  background-color: burlywood
+  background-color: burlywood;
+  overflow:hidden;
 }
 
 .content{
   padding: 0 0 20px 0;
+  min-height: calc(100vh - 40px);
  
 }
 
