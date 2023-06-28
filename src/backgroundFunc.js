@@ -35,7 +35,7 @@ export const getBackground = (weatherData) => {
     return finalImage.path
     
    }catch(error){
-    console.error(error);
+    console.error("WeatherDescription or timeofDay icon not found.", error);
     return`${defaultImage}`
    }
   }

@@ -73,6 +73,115 @@
    "description":" Haze",
    "type":"n",
    "path":"/assets/misty-night-christina-victoria-craft.jpg"
+},
+{
+   "id":"13",
+   "description":"Fog",
+   "type":"d",
+   "path":"/assets/misty-day-pixabay-163323.jpg"
+},
+{
+   "id":"14",
+   "description":"Fog",
+   "type":"n",
+   "path":"/assets/misty-night-christina-victoria-craft.jpg"
+},
+{
+   "id":"15",
+   "description":"Smoke",
+   "type":"d",
+   "path":"/assets/smoke-day-dominik-kiss.jpg"
+},
+{
+   "id":"16",
+   "description":"Smoke",
+   "type":"n",
+   "path":"/assets/smoke-night-matt-palmer.jpg"
+},
+{
+   "id":"16",
+   "description":"Dust",
+   "type":"d",
+   "path":"/assets/dust-day-devon-janse-van-rensburg.jpg"
+},
+{
+   "id":"18",
+   "description":"Dust",
+   "type":"n",
+   "path":"/assets/dust-night-dennis-groom.jpg"
+},
+{
+   "id":"19",
+   "description":"Thunderstorm",
+   "type":"d",
+   "path":"/assets/thunderstorm-day-basil-smith.jpg"
+},
+{
+   "id":"20",
+   "description":"Thunderstorm",
+   "type":"n",
+   "path":"/assets/thunderstorm-night-sadman-sakib.jpg"
+},
+{
+   "id":"21",
+   "description":"Drizzle",
+   "type":"d",
+   "path":"/assets/drizzle-day-roman-synkevych.jpg.jpg"
+},
+{
+   "id":"22",
+   "description":"Drizzle",
+   "type":"n",
+   "path":"/assets/drizzle-night-helena.jpg.jpg"
+},
+{
+   "id":"23",
+   "description":"Sand",
+   "type":"d",
+   "path":"/assets/dust-day-devon-janse-van-rensburg.jpg"
+},
+{
+   "id":"24",
+   "description":"Sand",
+   "type":"n",
+   "path":"/assets/dust-night-dennis-groom.jpg"
+},
+{
+   "id":"21",
+   "description":"Ash",
+   "type":"d",
+   "path":"/assets/ash-day-gary-saldana.jpg.jpg"
+},
+{
+   "id":"22",
+   "description":"Ash",
+   "type":"n",
+   "path":"/assets/ash-night-marc-szeglat.jpg"
+},
+{
+   "id":"21",
+   "description":"Squall",
+   "type":"d",
+   "path":"/assets/squall-day-isaac-bell.jpg"
+},
+{
+   "id":"22",
+   "description":"Squall",
+   "type":"n",
+   "path":"/assets/squall-night-jd-designs-.jpg.jpg"
+},
+{
+   "id":"21",
+   "description":"Tornado",
+   "type":"d",
+   "path":"/assets/tornado-day-espen-bierud.jpg"
+},
+{
+   "id":"22",
+   "description":"Tornado",
+   "type":"n",
+   "path":"/assets/tornado-night-nikolas-noonan.jpg"
 }
+
 
 ]
