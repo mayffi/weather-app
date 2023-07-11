@@ -4,14 +4,17 @@ import "./App.css";
 import { getBackground } from "./backgroundFunc";
 import Carousel from "./components/Carousel";
 
-function App(props) {
-  const [query, setQuery] = useState("");
+function App() {
+  const [city, setCity] = useState("");
   const [data, setData] = useState(null);
   const [unit, setUnit] = useState("metric");
-  const [backgroundImg, setbackgroundImg] = useState("/assets/default-john-tekeridis-754419.jpg");
+  const [backgroundImg, setbackgroundImg] = useState(
+    "/assets/default-john-tekeridis-754419.jpg"
+  );
   const [error, setError] = useState("");
   const [lat, setLat] = useState();
   const [lon, setLon] = useState();
+  const [loading, setLoading] = useState(false);
 
   const iconsUrl = useMemo(
     () =>
@@ -21,36 +24,32 @@ function App(props) {
     [data]
   );
 
-  const apiUrl = useMemo(
-    () =>
-      `https://api.openweathermap.org/data/2.5/weather?q=${query}&lat=${lat}&lon=${lon}&units=${unit}&appid=a6325784400e2a1842ec60f14b587c3b`,
-    [query, unit, lat, lon]
-  );
-
-  //     }
+  const fetchWeatherData = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(
+        `http://localhost:3001/weather?city=${city}&lat=${lat}&lon=${lon}&units=${unit}`
+      );
+      const data = await response.json();
+      if (data.error) {
+        setError("There is an error. Check your input");
+        setData(null);
+        return;
+      }
+      setData(data);
+      setError(null);
+    } catch (error) {
+      setError("Something went wrong");
+      setData(null);
+    } finally {
+      setLoading(false);
+    }
+  }, [city, lat, lon, unit]);
 
   useEffect(() => {
-    /*if (!lat || lon) {
-      return;
-    }*/
-    fetch(apiUrl)
-      .then(async (response) => {
-        if (!response.ok) {
-          setError("City not found. Check your input");
-          setData(null);
-        } else {
-          const data = await response.json(); // Process the response if successful
-          console.log(data);
-          setData(data); //Handles the data
-          setError(null);
-        }
-      })
-      .catch((error) => {
-        // Handle any errors
-        setError("Something went wrong");
-        setData(null);
-      });
-  }, [apiUrl, query]);
+    if (!lat || !lon) return;
+    fetchWeatherData();
+  }, [fetchWeatherData, lat, lon, city]);
 
   useEffect(() => {
     if (data) {
@@ -74,13 +73,14 @@ function App(props) {
 
   const containerStyle = {
     backgroundImage: `url(${backgroundImg})`,
-    // height:"100%"
+   
   };
 
   return (
     <div className="container" style={containerStyle}>
-      <Search onSearch={setQuery} />
-      {/* {currentLocation && !data ?( <p> Loading weather data...</p>) : null} */}
+      <Search onSearch={setCity} />
+      {loading && <p className="results">Fetching weather information</p>}
+
       {data && (
         <div className="content">
           <Carousel data={data} iconsUrl={iconsUrl} slides={App} />

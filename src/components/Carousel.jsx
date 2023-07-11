@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import config from "../config";
-import { FaEye, FaTemperatureHigh, FaTemperatureLow } from "react-icons/fa";
+import { FaTemperatureHigh, FaTemperatureLow } from "react-icons/fa";
 import {
   WiDirectionDown,
   WiDirectionUp,
@@ -13,16 +13,15 @@ import {
   WiSunrise,
   WiSunset,
 } from "react-icons/wi";
-import {IoEyeSharp} from "react-icons/io5"
+import { IoEyeSharp } from "react-icons/io5";
 
-const Carousel = (props) => {
-  const weather = props.data;
+const Carousel = ({ data }) => {
+  const weather = data.weather[0];
+  const sys = data.sys;
 
   const iconsUrl = useMemo(
     () =>
-      weather
-        ? `https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`
-        : null,
+      weather ? `https://openweathermap.org/img/wn/${weather.icon}.png` : null,
     [weather]
   );
 
@@ -36,30 +35,29 @@ const Carousel = (props) => {
     autoplaySpeed: 1000,
   };
 
-  const sunrise = new Date(weather.sys.sunrise * 1000).toLocaleTimeString([], {
+  const sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString([], {
     hour12: false,
     hour: "2-digit",
     minute: "2-digit",
   });
-  const sunset = new Date(weather.sys.sunset * 1000).toLocaleTimeString([], {
+  const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString([], {
     hour12: false,
     hour: "2-digit",
     minute: "2-digit",
   });
 
-  console.log(config.showWindSpeed);
-
+  console.log(data);
   return (
     <>
       <Slider {...settings}>
         <div className="slick-slide carousel-content">
           <h5 className="results-name">
-            {weather.name},{weather.sys.country}
+            {data.name},{sys.country}
           </h5>
-          <p className="temperature"> {Math.round(weather.main.temp)}&deg;</p>
+          <p className="temperature"> {Math.round(data.main.temp)}&deg;</p>
           <section className="icon-desc">
             <img src={iconsUrl} alt="weather icon"></img>
-            <p> {weather.weather[0].description}</p>
+            <p> {weather.description}</p>
           </section>
         </div>
 
@@ -67,37 +65,38 @@ const Carousel = (props) => {
           <div className="carousel-content-two ">
             <div className="top-row">
               <p>
-                <FaTemperatureHigh className="icon-style-2nd-slide" />
-                <WiDirectionUp
+                <FaTemperatureHigh className="icon-style-2nd-slide m-icons" />
+                <WiDirectionUp className="arrow-icons"
                   style={{
                     fontSize: 20,
                     position: "relative",
                     top: 4,
                     right: 5,
                     color: "#000",
+                    
                   }}
                 />
                 Max
                 <span className="temps">
-                  {Math.round(weather.main.temp_max)}&deg;
+                  {Math.round(data.main.temp_max)}&deg;
                 </span>
               </p>
               <p>
                 <FaTemperatureHigh
-                  className="icon-style-2nd-slide"
+                  className="icon-style-2nd-slide m-icons"
                   style={{ marginRight: "10px" }}
                 />
                 Feels like
                 <span className="temps">
-                  {Math.round(weather.main.feels_like)}&deg;
+                  {Math.round(data.main.feels_like)}&deg;
                 </span>
               </p>
             </div>
 
             <div className="bottom-row">
               <p>
-                <FaTemperatureLow className="icon-style-2nd-slide" />
-                <WiDirectionDown
+                <FaTemperatureLow className="icon-style-2nd-slide m-icons" />
+                <WiDirectionDown className="arrow-icons"
                   style={{
                     fontSize: 32,
                     position: "relative",
@@ -110,17 +109,17 @@ const Carousel = (props) => {
                 />
                 Min
                 <span className="temps">
-                  {Math.round(weather.main.temp_min)}&deg;
+                  {Math.round(data.main.temp_min)}&deg;
                 </span>
               </p>
               <p>
                 <WiHumidity
-                  className="icon-style"
+                  className="icon-style m-icons"
                   style={{ marginRight: "10px" }}
                 />
                 Humidity
                 <span className="temps">
-                  {Math.round(weather.main.humidity)} %
+                  {Math.round(data.main.humidity)} %
                 </span>
               </p>
             </div>
@@ -131,29 +130,39 @@ const Carousel = (props) => {
           <div className="slick-slide carousel-content-three">
             <div className="top-row">
               <p>
-                <WiSunrise className="icon-style" /> Sunrise
+                <WiSunrise className="icon-style m-icons" /> Sunrise
                 <span className="temps">{sunrise}</span>
               </p>
               {config.ShowVisibility && (
                 <p>
-                  <IoEyeSharp style={{ fontSize: 22, color: "#000", marginRight:"8",marginLeft:"8" }}/>
-                  {/* <FaEye style={{ fontSize: 22, color: "#000", marginRight:"8", marginBottom:"2" }} /> */}
+                  <IoEyeSharp className="icon-style m-icons"
+                    style={{
+                      fontSize: 22,
+                      color: "#000",
+                      marginRight: "8",
+                      marginLeft: "8",
+                    }}
+                  />
+                 
                   Visibility
-                  <span className="temps"> {weather.visibility / 1000} km</span>
+                  <span className="temps"> {data.visibility / 1000} km</span>
                 </p>
               )}
             </div>
             <div className="bottom-row">
               <p>
-                <WiSunset className="icon-style" /> Sunset
+                <WiSunset className="icon-style m-icons" /> Sunset
                 <span className="temps">{sunset}</span>
               </p>
               {config.showWindSpeed && (
                 <p>
-                  <WiStrongWind className="icon-style" style={{ marginRight:"8" , marginLeft:"8"}}/>
+                  <WiStrongWind
+                    className="icon-style m-icons"
+                    style={{ marginRight: "8", marginLeft: "8" }}
+                  />
                   Wind speed
                   <span className="temps">
-                    {Math.round(weather.wind.speed)} m/s
+                    {Math.round(data.wind.speed)} m/s
                   </span>
                 </p>
               )}
