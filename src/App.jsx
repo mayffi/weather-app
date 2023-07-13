@@ -5,7 +5,6 @@ import { getBackground } from "./backgroundFunc";
 import Carousel from "./components/Carousel";
 
 function App() {
-  const [city, setCity] = useState("");
   const [data, setData] = useState(null);
   const [unit, setUnit] = useState("metric");
   const [backgroundImg, setbackgroundImg] = useState(
@@ -24,62 +23,79 @@ function App() {
     [data]
   );
 
-  const fetchWeatherData = useCallback(async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(
-        `http://localhost:3001/weather?city=${city}&lat=${lat}&lon=${lon}&units=${unit}`
-      );
-      const data = await response.json();
-      if (data.error) {
-        setError("There is an error. Check your input");
+  const fetchWeatherData = useCallback(
+    async ({ query, lat, lon, unit }) => {
+      try {
+        let request;
+        if (query === undefined) {
+          request = `http://localhost:3001/weather?lat=${lat}&lon=${lon}&units=${unit}&appid=a6325784400e2a1842ec60f14b587c3b`;
+        } else {
+          request = `http://localhost:3001/weather?q=${query}&units=${unit}&appid=a6325784400e2a1842ec60f14b587c3b`;
+        }
+
+        setLoading(true);
+
+        const response = await fetch(request);
+        const data = await response.json();
+
+        if (data.error) {
+          setError("There is an error. Check your input");
+          setData(null);
+
+          return;
+        }
+        setData(data);
+        setError(null);
+      } catch (error) {
+        setError("Something went wrong");
         setData(null);
-        return;
+      } finally {
+        setLoading(false);
       }
-      setData(data);
-      setError(null);
-    } catch (error) {
-      setError("Something went wrong");
-      setData(null);
-    } finally {
-      setLoading(false);
-    }
-  }, [city, lat, lon, unit]);
+    },
+    [lat, lon, unit]
+  );
 
   useEffect(() => {
-    if (!lat || !lon) return;
-    fetchWeatherData();
-  }, [fetchWeatherData, lat, lon, city]);
+    if (!lat || !lon) {
+      setError("Unable to retrieve your current location");
+      return;
+    }
+
+    fetchWeatherData({ lat, lon, unit });
+  }, [fetchWeatherData, lat, lon, unit]);
 
   useEffect(() => {
     if (data) {
       const background = getBackground(data);
-      console.log(background);
       setbackgroundImg(background);
     }
   }, [data]);
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        console.log(lat, lon);
-        setLat(position.coords.latitude);
-        setLon(position.coords.longitude);
-      });
-    } else {
-      setError("Unable to retrieve your location");
+    if (!lat || !lon) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          setLat(position.coords.latitude);
+          setLon(position.coords.longitude);
+        });
+      }
     }
-  }, [data, lat, lon]);
+  }, [lat, lon]);
 
   const containerStyle = {
     backgroundImage: `url(${backgroundImg})`,
-   
+  };
+
+  const setCoords = (lat, lon) => {
+    setLat(lat);
+    setLon(lon);
   };
 
   return (
     <div className="container" style={containerStyle}>
-      <Search onSearch={setCity} />
-      {loading && <p className="results">Fetching weather information</p>}
+      <Search onSearch={setCoords} />
+      {loading && <p className="loading"> Fetching weather information...</p>}
 
       {data && (
         <div className="content">
@@ -102,7 +118,6 @@ function App() {
       )}
       {error && (
         <div
-          className="results"
           onClick={(e) => {
             e.preventDefault();
           }}

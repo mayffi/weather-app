@@ -1,62 +1,46 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 import "../dropDown.css";
 
 function Search(props) {
   const [search, setSearch] = useState("");
   const [options, setOptions] = useState([]);
-
-  const citiesApiUrl = `https://city-and-state-search-api.p.rapidapi.com/cities/search?q=${search}&limit=5`;
-  const citiesOptions = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "67458faf35msh80cd056b037cd02p10ab4bjsnb37bc61599c1",
-      "X-RapidAPI-Host": "city-and-state-search-api.p.rapidapi.com",
-    },
-  };
+  const timeout = useRef(null);
 
   const fetchOptions = useCallback(async () => {
-    await fetch(citiesApiUrl, citiesOptions)
+    await fetch(`http://localhost:3001/cities/cities?namePrefix=${search}`)
       .then((response) => response.json())
       .then((data) => {
-        setOptions(data);
-        console.log(data);
+        if (data.data) setOptions(data.data);
+        console.log(data.data);
       })
+
       .catch((error) => {
-        console.log("error");
+        console.log("error", error);
       });
-  }, [search, citiesApiUrl]);
+  }, [search]);
 
-  useEffect(() => {
-    if (search.length) {
-      fetchOptions();
-    } else {
-      setOptions([]);
-    }
-  }, [fetchOptions, search.length]);
-
-  const handleOptionsClick = (city) => {
-    setSearch(city);
-    getWeather();
+  const handleOptionsClick = (lat, lon) => {
+    getWeather({ lat, lon });
     setOptions([]);
     if (!getWeather) {
       setOptions([]);
     }
   };
 
-  const getWeather = (e = null) => {
-    if (e) {
-      e.preventDefault();
-    }
-    props.onSearch(search); //takes care of the search when a user submits, passes to the parent component through props
+  const getWeather = ({ lat, lon }) => {
+    props.onSearch(lat, lon); //takes care of the search when a user submits, passes to the parent component through props
   };
 
   const clearInput = () => {
     setSearch("");
-  };
+   };
 
   const handleSearch = (e) => {
+    clearTimeout(timeout.current);
+    timeout.current = null;
     setSearch(e.target.value); //handles the value change when user types an input
+    timeout.current = setTimeout(() => fetchOptions(), 300);
   };
 
   return (
@@ -73,8 +57,13 @@ function Search(props) {
           {options.length > 0 && (
             <ul className="city-list">
               {options.map((city) => (
-                <li key={city.id} onClick={() => handleOptionsClick(city.name)}>
-                  {city.name} ,{city.country_name}
+                <li
+                  key={city.id}
+                  onClick={() =>
+                    handleOptionsClick(city.latitude, city.longitude)
+                  }
+                >
+                  {city.name}, {city.country}
                 </li>
               ))}
             </ul>

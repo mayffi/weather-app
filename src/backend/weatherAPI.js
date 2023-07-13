@@ -7,7 +7,7 @@ const fetchWeatherData = async (req, res) => {
   try {
     const { city, lat, lon, units } = req.query;
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&lat=${lat}&lon=${lon}&units=${units}&appid=${API_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${city ? city : ''}&lat=${lat ? lat : ""}&lon=${lon ? lon : ""}&units=${units}&appid=${API_KEY}`
     );
     console.log(response);
     res.status(200).json(response.data);

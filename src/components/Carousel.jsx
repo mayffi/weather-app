@@ -46,13 +46,12 @@ const Carousel = ({ data }) => {
     minute: "2-digit",
   });
 
-  console.log(data);
   return (
     <>
       <Slider {...settings}>
         <div className="slick-slide carousel-content">
           <h5 className="results-name">
-            {data.name},{sys.country}
+            {data.name}, {sys.country}
           </h5>
           <p className="temperature"> {Math.round(data.main.temp)}&deg;</p>
           <section className="icon-desc">
@@ -66,14 +65,14 @@ const Carousel = ({ data }) => {
             <div className="top-row">
               <p>
                 <FaTemperatureHigh className="icon-style-2nd-slide m-icons" />
-                <WiDirectionUp className="arrow-icons"
+                <WiDirectionUp
+                  className="arrow-icons"
                   style={{
                     fontSize: 20,
                     position: "relative",
                     top: 4,
                     right: 5,
                     color: "#000",
-                    
                   }}
                 />
                 Max
@@ -81,22 +80,25 @@ const Carousel = ({ data }) => {
                   {Math.round(data.main.temp_max)}&deg;
                 </span>
               </p>
-              <p>
-                <FaTemperatureHigh
-                  className="icon-style-2nd-slide m-icons"
-                  style={{ marginRight: "10px" }}
-                />
-                Feels like
-                <span className="temps">
-                  {Math.round(data.main.feels_like)}&deg;
-                </span>
-              </p>
+              {config.showFeelsLike && (
+                <p>
+                  <FaTemperatureHigh
+                    className="icon-style-2nd-slide m-icons"
+                    style={{ marginRight: "10px" }}
+                  />
+                  Feels like
+                  <span className="temps">
+                    {Math.round(data.main.feels_like)}&deg;
+                  </span>
+                </p>
+              )}
             </div>
 
             <div className="bottom-row">
               <p>
                 <FaTemperatureLow className="icon-style-2nd-slide m-icons" />
-                <WiDirectionDown className="arrow-icons"
+                <WiDirectionDown
+                  className="arrow-icons"
                   style={{
                     fontSize: 32,
                     position: "relative",
@@ -112,16 +114,18 @@ const Carousel = ({ data }) => {
                   {Math.round(data.main.temp_min)}&deg;
                 </span>
               </p>
-              <p>
-                <WiHumidity
-                  className="icon-style m-icons"
-                  style={{ marginRight: "10px" }}
-                />
-                Humidity
-                <span className="temps">
-                  {Math.round(data.main.humidity)} %
-                </span>
-              </p>
+              {config.showHumidity && (
+                <p>
+                  <WiHumidity
+                    className="icon-style m-icons"
+                    style={{ marginRight: "10px" }}
+                  />
+                  Humidity
+                  <span className="temps">
+                    {Math.round(data.main.humidity)} %
+                  </span>
+                </p>
+              )}
             </div>
           </div>
         )}
@@ -135,15 +139,17 @@ const Carousel = ({ data }) => {
               </p>
               {config.ShowVisibility && (
                 <p>
-                  <IoEyeSharp className="icon-style m-icons"
+                  <IoEyeSharp
+                    className="icon-style m-icons"
                     style={{
                       fontSize: 22,
                       color: "#000",
                       marginRight: "8",
                       marginLeft: "8",
+                      position: "relative",
+                      right: "10",
                     }}
                   />
-                 
                   Visibility
                   <span className="temps"> {data.visibility / 1000} km</span>
                 </p>

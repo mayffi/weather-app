@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 .slide-hidden {
   display: none;
@@ -11,14 +10,11 @@
   height: 350px;
   margin: 70px auto;
   color: #fff;
-  text-shadow: -2px 1px 2px #000;
-  text-shadow: -1px 1px 2px #000,
-				  1px 2px 6px #000,
-				  1px -1px 0 #000,
-				  -1px -1px 0 #000;
+  text-shadow: -1px 1px 2px #000, 1px 2px 6px #000, 1px -1px 0 #000,
+    -1px -1px 0 #000;
   text-align: center;
   border-radius: 10px;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   font-family: "roboto", sans-serif;
 }
 
@@ -45,15 +41,13 @@
 }
 
 .carousel-content h5,
-p { 
+p {
   margin: 30px auto;
 }
 
 .slick-slide h5 {
   font-size: 1.5em;
 }
-
-
 
 .icon-desc {
   display: flex;
@@ -99,22 +93,19 @@ p {
   margin: 45px auto;
 }
 
-.carousel-content-three{
+.carousel-content-three {
   font-size: 1.3em;
   margin: 45px auto;
-  
 }
 
-.top-row{
+.top-row {
   display: flex;
   justify-content: space-around;
-
 }
 
-.bottom-row{
+.bottom-row {
   display: flex;
 }
-
 
 .slick-dots li {
   position: relative;
@@ -127,21 +118,18 @@ p {
   cursor: pointer;
 }
 
-.temps{
+.temps {
   display: block;
   margin: 10px 0 0 40px;
   font-size: 2rem;
 }
 
-.icon-style{
+.icon-style {
   font-size: 25px;
-  color:#000;
+  color: #000;
 }
 
-.icon-style-2nd-slide{
+.icon-style-2nd-slide {
   font-size: 20px;
-  color:#000;
+  color: #000;
 }
-
-
-

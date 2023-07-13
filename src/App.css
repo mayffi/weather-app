@@ -4,18 +4,17 @@ body {
   box-sizing: border-box;
   font-family: "roboto", sans-serif;
   background-color: burlywood;
-  overflow:hidden;
+  overflow: hidden;
 }
 
-.content{
+.content {
   padding: 0 0 20px 0;
   min-height: calc(100vh - 40px);
- 
 }
 
 .container {
   width: 100vw;
-  /* height: 100vh; */
+  height: 100vh;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -27,7 +26,6 @@ body {
   position: relative;
   top: 50px;
 }
-
 
 input {
   background-color: rgb(113, 121, 126, 0.4);
@@ -56,9 +54,6 @@ input {
   color: #fff;
 }
 
-.results{
-  height: 100vh;
-}
 .error-results {
   background-color: rgb(255, 255, 255, 0.23);
   width: 600px;
@@ -68,7 +63,7 @@ input {
   top: 20%;
   left: 23%;
   text-align: center;
-  padding-left: 15px;;
+  padding-left: 15px;
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -76,6 +71,18 @@ input {
   color: #fff;
   text-shadow: -1px 1px 2px #000, 1px 2px 6px #000, 1px -1px 0 #000,
     -1px -1px 0 #000;
+}
+
+.loading {
+  background-color: rgb(255, 255, 255, 0.23);
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  width: 300px;
+  padding: 7px;
+  font-size: 1.1em;
+  text-align: center;
 }
 
 .unit-selector {
@@ -105,27 +112,29 @@ input {
 
 /*Screens that are 960px wide or less */
 @media screen and (max-width: 960px) {
-  form{
-   margin-bottom: 30px;;
+  form {
+    margin-bottom: 30px;
   }
-  
-
+  .loading {
+    left: 250px;
+  }
+  .city-list {
+    width: 67%;
+  }
   .container {
     height: 100vh;
     position: relative;
     z-index: 0;
-   
-   
-}
+  }
+  .icon-desc p {
+    font-size: 1.5em !important;
+  }
+
   .slick-slider {
     width: 70% !important;
     height: 350px;
     margin: 70px auto;
   }
-
-/* .content {
-  padding: 0 ;
-} */
 
   input {
     height: 50px;
@@ -147,6 +156,17 @@ input {
     font-weight: 700;
     font-size: 7em;
     margin-left: 28px;
+  }
+
+  .temps {
+    font-size: 2.3rem !important;
+  }
+  .carousel-content-two {
+    font-size: 1.5em !important;
+  }
+
+  .carousel-content-three {
+    font-size: 1.5rem !important;
   }
 
   .error-results {
@@ -173,32 +193,28 @@ input {
     font-size: 1.2rem;
   }
 
-  /* .carousel-content-three{
-  
+  .city-list {
+    width: 65%;
+  }
+  .arrow-icons {
+    display: none;
+  }
+  .icon-desc p {
+    font-size: 1em !important;
   }
 
-  .carousel-content
-p { 
-  font-size: 1.1rem;
-  margin: 20px 3px 20px 3px;
+  .m-icons {
+    display: flex;
+    flex-direction: column;
+    margin: 3px auto !important;
+    padding: 2px;
+  }
 
-} */
-.arrow-icons{
-display: none;
-
-}
-.m-icons{
-  display: flex;
-  flex-direction: column;
-  margin: 3px auto !important;
-  padding: 2px;;
-}
-
-.temps {
-  margin: 0 !important;
- padding: 0 10px 0 10px;
- font-size: 1.3rem !important;
-}
+  .temps {
+    margin: 0 !important;
+    padding: 0 10px 0 10px;
+    font-size: 1.3rem !important;
+  }
 
   .temperature {
     font-weight: 700;
@@ -221,4 +237,3 @@ display: none;
     padding: 7px 20px;
   }
 }
-

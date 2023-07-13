@@ -1,4 +1,4 @@
-.city-list  {
+.city-list {
   border: 2 px solid #0000;
   border-radius: 5px 5px 10px 10px;
   cursor: pointer;
@@ -8,14 +8,13 @@
   margin: 0;
   position: fixed;
   z-index: 1;
-  width:45%;
+  width: 580px;
   background-color: rgb(255, 255, 255, 0.5);
 }
 .city-list li {
   padding-bottom: 3px;
   border: 1 px solid #0000;
 }
-
 
 .city-list li:hover {
   background-color: #434347;
