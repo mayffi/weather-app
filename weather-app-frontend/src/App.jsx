@@ -37,7 +37,7 @@ function App() {
 
         const response = await fetch(request);
         const data = await response.json();
-
+console.log(data)
         if (data.error) {
           setError("There is an error. Check your input");
           setData(null);

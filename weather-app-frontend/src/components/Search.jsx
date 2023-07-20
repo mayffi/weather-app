@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useRef } from "react";
+import React, { useCallback, useState, useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 import "../dropDown.css";
 
