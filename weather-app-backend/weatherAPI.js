@@ -1,11 +1,12 @@
 //API file to handle the request to Openweather API
 const axios = require("axios");
 
-const API_KEY = "a6325784400e2a1842ec60f14b587c3b";
+const API_KEY = process.env["WEATHER_API_KEY"];
 
 const fetchWeatherData = async (req, res) => {
   try {
     const { city, lat, lon, units } = req.query;
+    console.log(API_KEY)
     const response = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?q=${city ? city : ''}&lat=${lat ? lat : ""}&lon=${lon ? lon : ""}&units=${units}&appid=${API_KEY}`
     );

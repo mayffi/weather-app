@@ -4,7 +4,7 @@ const axios = require("axios");
 const express = require("express");
 const fetchCities = express.Router();
 
-const API_KEY = "67458faf35msh80cd056b037cd02p10ab4bjsnb37bc61599c1";
+const API_KEY = process.env["CITY_LIST_API_KEY"];
 const API_HOST = "wft-geo-db.p.rapidapi.com";
 
 fetchCities.get("/cities", async (req, res) => {

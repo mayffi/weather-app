@@ -1,7 +1,13 @@
+const resolve = require('dotenv').config({path:".env"})
 const express = require("express");
 const { fetchWeatherData } = require("./weatherAPI");
 const citiesAPI = require("./citiesAPI");
 
+
+if (resolve.error){
+throw resolve.error
+}
+console.log(resolve)
 const app = express();
 var cors = require("cors");
 const PORT = 3001;
