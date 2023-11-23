@@ -28,9 +28,9 @@ function App() {
       try {
         let request;
         if (query === undefined) {
-          request = `http://localhost:3001/weather?lat=${lat}&lon=${lon}&units=${unit}&appid=a6325784400e2a1842ec60f14b587c3b`;
+          request = `http://localhost:3001/weather?lat=${lat}&lon=${lon}&units=${unit}&appid=`;
         } else {
-          request = `http://localhost:3001/weather?q=${query}&units=${unit}&appid=a6325784400e2a1842ec60f14b587c3b`;
+          request = `http://localhost:3001/weather?q=${query}&units=${unit}&appid=`;
         }
 
         setLoading(true);
